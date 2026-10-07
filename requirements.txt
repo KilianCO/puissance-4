@@ -1,7 +1,13 @@
-# Dépendances importées par le projet (le jeu lui-même n'utilise que la bibliothèque standard).
-# torch n'est requis que pour rl/dqn.py et rl/train_dqn.py.
-# Validé avec Python 3.11 et torch 2.5.1 ; pour une build CUDA, voir
-# https://pytorch.org/get-started/locally/
-
+# Python 3.11. Le jeu lui-même n'utilise que la bibliothèque standard.
+#
+# torch et numpy servent à l'apprentissage (P4/rl/). Validé avec
+# torch 2.5.1 ; pour une build CUDA, voir https://pytorch.org/get-started/locally/
 torch>=2.5
+numpy<2
+
+# Export du modèle pour le site (P4/rl/export_onnx.py).
+# onnxruntime 1.30 plante à l'import sous Windows avec numpy 1.x : rester en 1.19.
+onnx
+onnxruntime==1.19.2
+
 pytest>=8.0
