@@ -20,3 +20,6 @@ __azurite_db_*.json
 .env
 *.env
 local.settings.json
+
+# Documentation personnelle, non publiée
+notes/
