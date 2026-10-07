@@ -11,7 +11,9 @@ Définition des différents types de joueurs.
 from abc import ABC, abstractmethod
 import random
 
+from .bitboard import from_board
 from .board import Board, Cell
+from .minimax import minimax_move, tactical_move
 
 
 class Player(ABC):
@@ -101,3 +103,52 @@ class HumanPlayer(Player):
             return "X"
 
         return "O"
+
+
+class TacticalPlayer(Player):
+    """
+    Joueur qui gagne s'il le peut, bloque une menace immédiate, et joue
+    au hasard sinon.
+
+    C'est le premier adversaire qu'un agent entraîné doit battre : il ne
+    planifie rien, mais ne laisse passer aucune erreur à un coup.
+    """
+
+    def choose_action(self, board: Board) -> int:
+        return tactical_move(*from_board(board, self.piece))
+
+
+class MinimaxPlayer(Player):
+    """
+    Joueur minimax avec élagage alpha-bêta.
+
+    Parameters
+    ----------
+    depth : int
+        Nombre de coups d'avance. Les niveaux du site sont 1 (facile,
+        avec randomness=0.35), 4 (moyen) et 6 (difficile).
+
+    randomness : float
+        Part de coups joués au hasard.
+    """
+
+    def __init__(
+        self,
+        piece: Cell,
+        depth: int = 4,
+        randomness: float = 0.0,
+    ):
+        super().__init__(piece)
+
+        if depth < 1:
+            raise ValueError("depth must be at least 1.")
+
+        self.depth = depth
+        self.randomness = randomness
+
+    def choose_action(self, board: Board) -> int:
+        return minimax_move(
+            *from_board(board, self.piece),
+            self.depth,
+            self.randomness,
+        )
