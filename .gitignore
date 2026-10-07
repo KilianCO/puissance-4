@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Modèles entraînés et exports (publiés via GitHub Release, jamais versionnés)
+models/
+*.pt
+*.pth
+*.pkl
+*.onnx
+
+# Émulateur Azurite (stockage Azure local)
+__blobstorage__/
+__queuestorage__/
+__azurite_db_*.json
+
+# Environnement local et secrets
+.env
+*.env
+local.settings.json

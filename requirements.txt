@@ -1,0 +1,7 @@
+# Dépendances importées par le projet (le jeu lui-même n'utilise que la bibliothèque standard).
+# torch n'est requis que pour rl/dqn.py et rl/train_dqn.py.
+# Validé avec Python 3.11 et torch 2.5.1 ; pour une build CUDA, voir
+# https://pytorch.org/get-started/locally/
+
+torch>=2.5
+pytest>=8.0
