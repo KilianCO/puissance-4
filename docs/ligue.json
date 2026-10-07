@@ -1,0 +1,425 @@
+{
+  "date": "2026-10-07",
+  "games_per_pairing": 40,
+  "opening_moves": 4,
+  "seed": 0,
+  "standings": [
+    {
+      "name": "Monte-Carlo 10 000",
+      "kind": "recherche",
+      "elo": 1856,
+      "games": 360,
+      "score": 0.786,
+      "wins": 278,
+      "losses": 72,
+      "draws": 10
+    },
+    {
+      "name": "DQN V2",
+      "kind": "appris",
+      "elo": 1832,
+      "games": 360,
+      "score": 0.762,
+      "wins": 266,
+      "losses": 77,
+      "draws": 17
+    },
+    {
+      "name": "Minimax moyen",
+      "kind": "recherche",
+      "elo": 1809,
+      "games": 360,
+      "score": 0.739,
+      "wins": 261,
+      "losses": 89,
+      "draws": 10
+    },
+    {
+      "name": "Minimax difficile",
+      "kind": "recherche",
+      "elo": 1806,
+      "games": 360,
+      "score": 0.736,
+      "wins": 261,
+      "losses": 91,
+      "draws": 8
+    },
+    {
+      "name": "Monte-Carlo 1 000",
+      "kind": "recherche",
+      "elo": 1717,
+      "games": 360,
+      "score": 0.644,
+      "wins": 226,
+      "losses": 122,
+      "draws": 12
+    },
+    {
+      "name": "Minimax 2",
+      "kind": "recherche",
+      "elo": 1685,
+      "games": 360,
+      "score": 0.613,
+      "wins": 217,
+      "losses": 136,
+      "draws": 7
+    },
+    {
+      "name": "Minimax facile",
+      "kind": "recherche",
+      "elo": 1297,
+      "games": 360,
+      "score": 0.299,
+      "wins": 107,
+      "losses": 252,
+      "draws": 1
+    },
+    {
+      "name": "Tactique",
+      "kind": "référence",
+      "elo": 1280,
+      "games": 360,
+      "score": 0.287,
+      "wins": 103,
+      "losses": 256,
+      "draws": 1
+    },
+    {
+      "name": "DQN V1",
+      "kind": "appris",
+      "elo": 917,
+      "games": 360,
+      "score": 0.092,
+      "wins": 33,
+      "losses": 327,
+      "draws": 0
+    },
+    {
+      "name": "Aléatoire",
+      "kind": "référence",
+      "elo": 801,
+      "games": 360,
+      "score": 0.042,
+      "wins": 15,
+      "losses": 345,
+      "draws": 0
+    }
+  ],
+  "pairings": [
+    {
+      "player": "Aléatoire",
+      "opponent": "Tactique",
+      "wins": 0,
+      "losses": 40,
+      "draws": 0
+    },
+    {
+      "player": "Aléatoire",
+      "opponent": "Minimax facile",
+      "wins": 1,
+      "losses": 39,
+      "draws": 0
+    },
+    {
+      "player": "Aléatoire",
+      "opponent": "Minimax 2",
+      "wins": 0,
+      "losses": 40,
+      "draws": 0
+    },
+    {
+      "player": "Aléatoire",
+      "opponent": "Minimax moyen",
+      "wins": 0,
+      "losses": 40,
+      "draws": 0
+    },
+    {
+      "player": "Aléatoire",
+      "opponent": "Minimax difficile",
+      "wins": 0,
+      "losses": 40,
+      "draws": 0
+    },
+    {
+      "player": "Aléatoire",
+      "opponent": "Monte-Carlo 1 000",
+      "wins": 0,
+      "losses": 40,
+      "draws": 0
+    },
+    {
+      "player": "Aléatoire",
+      "opponent": "Monte-Carlo 10 000",
+      "wins": 0,
+      "losses": 40,
+      "draws": 0
+    },
+    {
+      "player": "Aléatoire",
+      "opponent": "DQN V1",
+      "wins": 14,
+      "losses": 26,
+      "draws": 0
+    },
+    {
+      "player": "Aléatoire",
+      "opponent": "DQN V2",
+      "wins": 0,
+      "losses": 40,
+      "draws": 0
+    },
+    {
+      "player": "Tactique",
+      "opponent": "Minimax facile",
+      "wins": 22,
+      "losses": 18,
+      "draws": 0
+    },
+    {
+      "player": "Tactique",
+      "opponent": "Minimax 2",
+      "wins": 1,
+      "losses": 39,
+      "draws": 0
+    },
+    {
+      "player": "Tactique",
+      "opponent": "Minimax moyen",
+      "wins": 0,
+      "losses": 40,
+      "draws": 0
+    },
+    {
+      "player": "Tactique",
+      "opponent": "Minimax difficile",
+      "wins": 1,
+      "losses": 39,
+      "draws": 0
+    },
+    {
+      "player": "Tactique",
+      "opponent": "Monte-Carlo 1 000",
+      "wins": 0,
+      "losses": 39,
+      "draws": 1
+    },
+    {
+      "player": "Tactique",
+      "opponent": "Monte-Carlo 10 000",
+      "wins": 0,
+      "losses": 40,
+      "draws": 0
+    },
+    {
+      "player": "Tactique",
+      "opponent": "DQN V1",
+      "wins": 38,
+      "losses": 2,
+      "draws": 0
+    },
+    {
+      "player": "Tactique",
+      "opponent": "DQN V2",
+      "wins": 1,
+      "losses": 39,
+      "draws": 0
+    },
+    {
+      "player": "Minimax facile",
+      "opponent": "Minimax 2",
+      "wins": 4,
+      "losses": 36,
+      "draws": 0
+    },
+    {
+      "player": "Minimax facile",
+      "opponent": "Minimax moyen",
+      "wins": 2,
+      "losses": 38,
+      "draws": 0
+    },
+    {
+      "player": "Minimax facile",
+      "opponent": "Minimax difficile",
+      "wins": 1,
+      "losses": 39,
+      "draws": 0
+    },
+    {
+      "player": "Minimax facile",
+      "opponent": "Monte-Carlo 1 000",
+      "wins": 7,
+      "losses": 33,
+      "draws": 0
+    },
+    {
+      "player": "Minimax facile",
+      "opponent": "Monte-Carlo 10 000",
+      "wins": 0,
+      "losses": 40,
+      "draws": 0
+    },
+    {
+      "player": "Minimax facile",
+      "opponent": "DQN V1",
+      "wins": 36,
+      "losses": 4,
+      "draws": 0
+    },
+    {
+      "player": "Minimax facile",
+      "opponent": "DQN V2",
+      "wins": 0,
+      "losses": 39,
+      "draws": 1
+    },
+    {
+      "player": "Minimax 2",
+      "opponent": "Minimax moyen",
+      "wins": 10,
+      "losses": 30,
+      "draws": 0
+    },
+    {
+      "player": "Minimax 2",
+      "opponent": "Minimax difficile",
+      "wins": 17,
+      "losses": 21,
+      "draws": 2
+    },
+    {
+      "player": "Minimax 2",
+      "opponent": "Monte-Carlo 1 000",
+      "wins": 18,
+      "losses": 20,
+      "draws": 2
+    },
+    {
+      "player": "Minimax 2",
+      "opponent": "Monte-Carlo 10 000",
+      "wins": 8,
+      "losses": 32,
+      "draws": 0
+    },
+    {
+      "player": "Minimax 2",
+      "opponent": "DQN V1",
+      "wins": 39,
+      "losses": 1,
+      "draws": 0
+    },
+    {
+      "player": "Minimax 2",
+      "opponent": "DQN V2",
+      "wins": 10,
+      "losses": 27,
+      "draws": 3
+    },
+    {
+      "player": "Minimax moyen",
+      "opponent": "Minimax difficile",
+      "wins": 17,
+      "losses": 21,
+      "draws": 2
+    },
+    {
+      "player": "Minimax moyen",
+      "opponent": "Monte-Carlo 1 000",
+      "wins": 21,
+      "losses": 17,
+      "draws": 2
+    },
+    {
+      "player": "Minimax moyen",
+      "opponent": "Monte-Carlo 10 000",
+      "wins": 18,
+      "losses": 20,
+      "draws": 2
+    },
+    {
+      "player": "Minimax moyen",
+      "opponent": "DQN V1",
+      "wins": 40,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "player": "Minimax moyen",
+      "opponent": "DQN V2",
+      "wins": 17,
+      "losses": 19,
+      "draws": 4
+    },
+    {
+      "player": "Minimax difficile",
+      "opponent": "Monte-Carlo 1 000",
+      "wins": 27,
+      "losses": 12,
+      "draws": 1
+    },
+    {
+      "player": "Minimax difficile",
+      "opponent": "Monte-Carlo 10 000",
+      "wins": 18,
+      "losses": 21,
+      "draws": 1
+    },
+    {
+      "player": "Minimax difficile",
+      "opponent": "DQN V1",
+      "wins": 40,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "player": "Minimax difficile",
+      "opponent": "DQN V2",
+      "wins": 16,
+      "losses": 22,
+      "draws": 2
+    },
+    {
+      "player": "Monte-Carlo 1 000",
+      "opponent": "Monte-Carlo 10 000",
+      "wins": 9,
+      "losses": 28,
+      "draws": 3
+    },
+    {
+      "player": "Monte-Carlo 1 000",
+      "opponent": "DQN V1",
+      "wins": 40,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "player": "Monte-Carlo 1 000",
+      "opponent": "DQN V2",
+      "wins": 16,
+      "losses": 21,
+      "draws": 3
+    },
+    {
+      "player": "Monte-Carlo 10 000",
+      "opponent": "DQN V1",
+      "wins": 40,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "player": "Monte-Carlo 10 000",
+      "opponent": "DQN V2",
+      "wins": 17,
+      "losses": 19,
+      "draws": 4
+    },
+    {
+      "player": "DQN V1",
+      "opponent": "DQN V2",
+      "wins": 0,
+      "losses": 40,
+      "draws": 0
+    }
+  ]
+}

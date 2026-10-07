@@ -7,9 +7,11 @@ La démarche, les choix techniques et les résultats mesurés sont résumés dan
 
 ```
 P4/board.py, game.py        moteur de jeu
-P4/players.py               joueurs : humain, aléatoire, tactique, minimax
-P4/bitboard.py, minimax.py  plateau compact et recherche alpha-bêta
+P4/players.py               joueurs : humain, aléatoire, tactique, minimax, Monte-Carlo
+P4/bitboard.py              plateau compact
+P4/minimax.py, mcts.py      recherche alpha-bêta, recherche de Monte-Carlo
 P4/arena.py                 banc d'évaluation entre joueurs
+P4/league.py                tournoi entre tous les joueurs et classement Elo
 P4/interface/cli.py         partie en ligne de commande
 P4/simulate.py              simulations entre joueurs
 P4/rl/                      agents, entraînement, export
@@ -57,6 +59,16 @@ Chaque joueur affronte les mêmes adversaires, la moitié des parties dans chaqu
 | tactique | gagne ou bloque quand c'est possible à un coup, au hasard sinon |
 | minimax 1, 4, 6 | alpha-bêta ; ce sont les niveaux facile, moyen et difficile du site |
 
+Avec `--opening 4`, les quatre premiers coups sont joués au hasard : la mesure porte alors sur des positions variées.
+
+## Classer tous les joueurs
+
+```bash
+python -m P4.league --games 40 --output docs/ligue.json
+```
+
+Tous les joueurs (aléatoire, tactique, minimax, Monte-Carlo, modèles entraînés) s'affrontent deux à deux, puis reçoivent une note Elo. Le dernier classement est dans [docs/ligue.json](docs/ligue.json) et commenté dans [docs/APPROCHE.md](docs/APPROCHE.md).
+
 ## Publier sur le site
 
 ```bash
@@ -69,6 +81,7 @@ Le réseau est exporté en ONNX (entrée `[N, 2, 6, 7]`, sortie `[N, 7]`) et vé
 
 | Agent | Fichiers | État |
 |---|---|---|
+| Monte-Carlo (MCTS) | `mcts.py` | recherche sans apprentissage : rien à entraîner |
 | DQN V2 | `rl/dqn_v2.py`, `rl/train_dqn_v2.py` | réseau convolutif, self-play ; modèle du site |
 | DQN V1 | `rl/dqn.py`, `rl/train_dqn.py` | conservé comme référence |
 | Q-learning tabulaire | `rl/q_learning.py`, `rl/train_qlearning.py` | conservé comme référence |

@@ -13,6 +13,7 @@ import random
 
 from .bitboard import from_board
 from .board import Board, Cell
+from .mcts import mcts_move
 from .minimax import minimax_move, tactical_move
 
 
@@ -151,4 +152,35 @@ class MinimaxPlayer(Player):
             *from_board(board, self.piece),
             self.depth,
             self.randomness,
+        )
+
+
+class MonteCarloPlayer(Player):
+    """
+    Joueur par recherche arborescente de Monte-Carlo pure : il estime
+    chaque coup en jouant des parties aléatoires, sans rien avoir appris.
+
+    Parameters
+    ----------
+    simulations : int
+        Nombre de parties simulées par coup. Plus il y en a, plus le
+        joueur est fort et lent.
+    """
+
+    def __init__(
+        self,
+        piece: Cell,
+        simulations: int = 1_000,
+    ):
+        super().__init__(piece)
+
+        if simulations < 1:
+            raise ValueError("simulations must be at least 1.")
+
+        self.simulations = simulations
+
+    def choose_action(self, board: Board) -> int:
+        return mcts_move(
+            *from_board(board, self.piece),
+            self.simulations,
         )

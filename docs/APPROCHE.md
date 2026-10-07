@@ -63,6 +63,35 @@ Part de victoires sur 200 parties par adversaire, sans exploration.
 
 Les deux colonnes de la V2 ne disent pas la même chose. En partant du plateau vide, le modèle et le minimax sont presque déterministes et rejouent souvent des parties proches de celles vues à l'entraînement. Avec quatre premiers coups aléatoires, le modèle joue des positions nouvelles : c'est la mesure la plus représentative, et celle à retenir.
 
+## Un troisième type de joueur : la recherche de Monte-Carlo
+
+`P4/mcts.py` ajoute un joueur qui n'a rien appris et ne contient aucune stratégie écrite à la main. Pour juger un coup, il termine la partie au hasard un grand nombre de fois et compte les victoires. Un arbre de recherche concentre les simulations sur les coups prometteurs (formule UCT), et le coup joué est le plus visité.
+
+Il n'y a rien à entraîner : sa force se règle par le nombre de simulations accordées à chaque coup. C'est un point de comparaison utile, parce qu'il ne doit rien ni à l'apprentissage ni à une formule d'évaluation.
+
+## Classement Elo
+
+`P4/league.py` fait s'affronter tous les joueurs deux à deux, puis calcule les notes Elo qui expliquent le mieux l'ensemble des résultats. Les notes ne sont pas mises à jour partie après partie, ce qui les rendrait dépendantes de l'ordre des parties.
+
+Tournoi du 7 octobre 2026 : 40 parties par confrontation, la moitié dans chaque position, quatre premiers coups au hasard. Le détail est dans [ligue.json](ligue.json).
+
+| Rang | Joueur | Méthode | Elo |
+|---|---|---|---|
+| 1 | Monte-Carlo, 10 000 simulations | recherche | 1856 |
+| 2 | **IA entraînée (DQN V2)** | apprentissage | 1832 |
+| 3 | Minimax moyen | recherche | 1809 |
+| 4 | Minimax difficile | recherche | 1806 |
+| 5 | Monte-Carlo, 1 000 simulations | recherche | 1717 |
+| 6 | Minimax à 2 coups d'avance | recherche | 1685 |
+| 7 | Minimax facile | recherche | 1297 |
+| 8 | Tactique | règle simple | 1280 |
+| 9 | Premier réseau (DQN V1) | apprentissage | 917 |
+| 10 | Aléatoire | hasard | 801 |
+
+200 points d'écart correspondent à environ 76 % de score attendu. Les quatre premiers se tiennent en 50 points, ce qui n'est pas significatif à 40 parties par confrontation : le réseau, le minimax à 4 ou 6 coups d'avance et le Monte-Carlo à 10 000 simulations sont de force comparable. Le classement confirme en revanche l'écart entre les deux versions du DQN.
+
+L'Elo suppose une force transitive, ce qui n'est pas garanti entre des méthodes aussi différentes ; le détail des confrontations reste donc utile.
+
 ## Limites
 
 - Le modèle ne calcule pas : il répond en une seule passe du réseau. Il perd encore 5 % des parties contre le joueur tactique.
@@ -76,6 +105,6 @@ Le réseau est exporté au format ONNX. L'export relit le fichier avec ONNX Runt
 
 ## Suite envisagée
 
-- Donner au modèle la capacité de calculer : le réseau évalue les positions, une recherche anticipe les coups (principe d'AlphaZero).
-- Comparer d'autres méthodes d'apprentissage et les faire s'affronter dans un classement commun.
+- Réunir les deux briques présentes : guider la recherche de Monte-Carlo par le réseau au lieu de parties aléatoires (principe d'AlphaZero).
+- Ajouter d'autres méthodes d'apprentissage à la ligue.
 - Évaluer automatiquement chaque nouveau modèle avant sa mise en ligne.
