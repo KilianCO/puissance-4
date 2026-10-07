@@ -79,12 +79,14 @@ class QLearningAgent:
             return random.choice(legal_actions)
 
         # Exploitation
-        q_values = [
-            self.q_table[state][action]
-            for action in legal_actions
-        ]
+        # Lecture seule : .get() évite de créer une entrée dans la
+        # Q-table pour chaque état simplement consulté.
+        known_q_values = self.q_table.get(state, {})
 
-        max_q = max(q_values)
+        max_q = max(
+            known_q_values.get(action, 0.0)
+            for action in legal_actions
+        )
 
         # Plusieurs actions peuvent avoir exactement la même
         # valeur Q. On choisit aléatoirement entre elles afin
@@ -92,7 +94,7 @@ class QLearningAgent:
         best_actions = [
             action
             for action in legal_actions
-            if self.q_table[state][action] == max_q
+            if known_q_values.get(action, 0.0) == max_q
         ]
 
         return random.choice(best_actions)
@@ -121,8 +123,10 @@ class QLearningAgent:
                     "No legal action available in non-terminal state."
                 )
 
+            next_q_values = self.q_table.get(next_state, {})
+
             next_q = max(
-                self.q_table[next_state][next_action]
+                next_q_values.get(next_action, 0.0)
                 for next_action in next_legal_actions
             )
 

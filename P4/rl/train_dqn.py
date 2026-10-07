@@ -32,8 +32,11 @@ from P4.rl.environment import Connect4Environment
 # Configuration
 # ============================================================
 
-MODEL_PATH = Path(
-    "models/dqn_v1.pt"
+# Chemin ancré à la racine du dépôt, quel que soit le dossier courant.
+MODEL_PATH = (
+    Path(__file__).resolve().parents[2]
+    / "models"
+    / "dqn_v1.pt"
 )
 
 NUMBER_OF_EPISODES = 10_000

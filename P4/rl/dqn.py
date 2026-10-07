@@ -782,6 +782,7 @@ class DQNAgent:
         checkpoint = torch.load(
             path,
             map_location=self.device,
+            weights_only=True,
         )
 
         self.online_network.load_state_dict(

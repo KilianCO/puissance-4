@@ -93,9 +93,8 @@ class Connect4Environment:
                 else Cell.PLAYER_1
             )
 
-            self.opponent = RandomPlayer(
-                self.opponent_piece
-            )
+            # L'adversaire reste le même : seule sa pièce change.
+            self.opponent.piece = self.opponent_piece
 
         self.board.reset()
         self.done = False

@@ -15,7 +15,8 @@ from P4.rl.environment import Connect4Environment
 from P4.rl.q_learning import QLearningAgent
 
 
-MODEL_PATH = Path("models/q_learning_v2.pkl")
+# Chemin ancré à la racine du dépôt, quel que soit le dossier courant.
+MODEL_PATH = Path(__file__).resolve().parents[2] / "models" / "q_learning_v2.pkl"
 
 
 def train(
