@@ -3,6 +3,8 @@
 Moteur de jeu, adversaires de référence et agents entraînés par apprentissage par renforcement.
 Le modèle entraîné est jouable sur [kilianco.github.io](https://kilianco.github.io/projets/puissance-4/).
 
+La démarche, les choix techniques et les résultats mesurés sont résumés dans [docs/APPROCHE.md](docs/APPROCHE.md).
+
 ```
 P4/board.py, game.py        moteur de jeu
 P4/players.py               joueurs : humain, aléatoire, tactique, minimax

@@ -12,6 +12,11 @@ Exemples :
     python -m P4.arena                          # références entre elles
     python -m P4.arena --model models/dqn_v2/best.pt
     python -m P4.arena --model models/dqn_v1.pt --games 200
+    python -m P4.arena --model models/dqn_v2/best.pt --opening 4
+
+Avec --opening N, les N premiers coups de chaque partie sont joués au
+hasard : deux joueurs déterministes ne rejouent alors pas toujours la même
+partie, et l'on mesure le jeu sur des positions variées.
 """
 
 import argparse
@@ -81,10 +86,16 @@ def play_match(
     player: PlayerFactory,
     opponent: PlayerFactory,
     games: int,
+    opening_moves: int = 0,
 ) -> MatchResult:
     """
     Joue `games` parties, en alternant le joueur qui commence.
+
+    Les `opening_moves` premiers coups sont joués au hasard (au plus 6 :
+    au-delà, la partie pourrait être finie avant de commencer).
     """
+    if not 0 <= opening_moves <= 6:
+        raise ValueError("opening_moves must be between 0 and 6.")
     result = MatchResult()
 
     for index in range(games):
@@ -102,6 +113,13 @@ def play_match(
                 player(Cell.PLAYER_2),
             )
             player_won = GameStatus.PLAYER_2_WON
+
+        for _ in range(opening_moves):
+            game.board.play(
+                random.choice(game.board.legal_actions()),
+                game.current_player,
+            )
+            game._switch_player()
 
         status = game.play()
 
@@ -123,13 +141,14 @@ def benchmark(
     player: PlayerFactory,
     games: int = 100,
     opponents: dict[str, PlayerFactory] | None = None,
+    opening_moves: int = 0,
 ) -> dict[str, MatchResult]:
     """Fait jouer `player` contre chaque adversaire de référence."""
     if opponents is None:
         opponents = REFERENCES
 
     return {
-        name: play_match(player, opponent, games)
+        name: play_match(player, opponent, games, opening_moves)
         for name, opponent in opponents.items()
     }
 
@@ -178,6 +197,12 @@ def main() -> None:
     parser.add_argument("--games", type=int, default=100)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument(
+        "--opening",
+        type=int,
+        default=0,
+        help="nombre de premiers coups joués au hasard (0 à 6)",
+    )
+    parser.add_argument(
         "--skip-deep",
         action="store_true",
         help="ne joue pas contre le minimax 6, le plus lent",
@@ -200,8 +225,9 @@ def main() -> None:
 
     display_benchmark(
         f"{title} — {args.games} parties par adversaire, "
-        f"moitié en premier, moitié en second",
-        benchmark(player, args.games, opponents),
+        f"moitié en premier, moitié en second"
+        + (f", {args.opening} premiers coups au hasard" if args.opening else ""),
+        benchmark(player, args.games, opponents, args.opening),
     )
 
 
